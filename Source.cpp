@@ -27,6 +27,8 @@ void ShowStorage(int mode = 0);
 void AddStorageItem();
 void RemoveStorageItem();
 void ChangePrice();
+void ChangeStorage();
+void AddNewItem();
 
 template<typename ArrType>
 void FillArray(ArrType* dynamicArray, ArrType* staticArray, size_t arraySize);
@@ -176,7 +178,7 @@ void ShowSuperAdminMenu()
 		}
 		else if (choose == "6")
 		{
-
+			ChangeStorage();
 		}
 		else if (choose == "7")
 		{
@@ -227,7 +229,6 @@ inline void Err(int time)
 	Sleep(time);
 	system("cls");
 }
-
 void CreateStorage()
 {
 	const int staticSize = 10;
@@ -254,7 +255,6 @@ void CreateStorage()
 	FillArray(countArr, count, storageSize);
 	FillArray(priceArr, price, storageSize);
 }
-
 void ShowStorage(int mode)
 {
 	if (mode == 0)
@@ -288,7 +288,6 @@ void ShowStorage(int mode)
 		}
 	}
 }
-
 void AddStorageItem()
 {
 	std::string chooseId, chooseCount, choose;
@@ -347,7 +346,6 @@ void AddStorageItem()
 	}
 
 }
-
 void RemoveStorageItem()
 {
 	std::string chooseId, chooseCount, choose;
@@ -405,7 +403,40 @@ void RemoveStorageItem()
 
 	}
 }
+void ChangeStorage()
+{
+	std::string choose;
+	while (true)
+	{
+		std::cout << "1 - Добавить товар\n";
+		std::cout << "2 - Показать склад\n";
+		std::cout << "3 - Пополнить склад\n";
+		std::cout << "0 - Выйти из редактора\n";
+		std::cout << "Ввод: ";
+		Getline(choose);
 
+		if (choose == "1")
+		{
+			AddNewItem();
+		}
+		else if (choose == "2")
+		{
+			
+		}
+		else if (choose == "3")
+		{
+	
+		}
+		else if (choose == "0")
+		{
+			break;
+		}
+		else
+		{
+			Err();
+		}
+	}
+}
 void ChangePrice()
 {
 	std::string chooseId, choosePrice, choose;
@@ -464,7 +495,52 @@ void ChangePrice()
 
 	}
 }
+void AddNewItem()
+{
+	std::string newName, newPrice, newCount, choose;
+	double price = 0.0;
+	unsigned int count = 0;
+	bool exit = true;
+	while (true)
+	{
+		while (true)
+		{
+			system("cls");
+			std::cout << "\tДобавление нового товара!\n\nВедите \"exit\" для прекращения операции\n\n";
+			std::cout << "Введите название нового товара";
+			Getline(newName);
+			if (newName == "exit")
+			{
+				std::cout << "операция добавления товара прервана!\n";
+				Sleep(1500);
+				exit = false;
+				break;
+			}
+			if (newName.size() <= 0 || newName.size() >= 80)
+			{
+				std::cout << "Ошибка имени. Максимальная длинна 80 символов\n";
+				Sleep(1500);
+			}
+			else
+			{
+				break;
+			}
+		}
 
+		while (exit)
+		{
+
+			
+			
+
+		}
+
+
+
+	}
+
+
+}
 template<typename ArrType>
 void FillArray(ArrType* dynamicArray, ArrType* staticArray, size_t arraySize)
 {
