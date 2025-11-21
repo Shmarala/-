@@ -222,7 +222,7 @@ bool CheckLogin(const std::string& str)
 }
 bool CheckPass(const std::string& str)
 {
-	for (str.size() < 0 || str.size() > 20)
+	if (str.size() < 0 || str.size() > 20)
 	{
 		std::cout << "Ошибка длины пароля";
 		Sleep(1500);
@@ -361,7 +361,7 @@ void ShowStorage(int mode)
 	if (mode == 0)
 	{
 		system("cls");
-		std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t" << "Кол-во\t" << "Цена\n";
+		std::cout << "ID\t" << std::left << std::setw(25) << "Название товара\t\t\t" << "Кол-во\t" << "Цена\n";
 
 		for (size_t i = 0; i < storageSize; i++)
 		{
