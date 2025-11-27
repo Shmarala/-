@@ -1332,6 +1332,7 @@ void Selling()
 				delete[] countArrCheck;
 				delete[] priceArrCheck;
 				delete[] totalPriceArrCheck;
+				break;
 			}
 			else if (choose == "2")
 			{
