@@ -26,6 +26,8 @@ void DeleteUser();
 //-----------------------------------------------------------
 
 
+
+
 // ------------------------Склад-----------------------------
 size_t storageSize = 0;
 unsigned int* idArr = nullptr;
@@ -48,6 +50,21 @@ template<typename ArrType>
 void FillArray(ArrType* dynamicArray, ArrType* staticArray, size_t arraySize);
 
 //-----------------------------------------------------------
+
+
+
+
+// ----------------Продажи----------------------------------
+
+
+
+
+
+
+
+//------------------------------------------------------------
+
+
 
 
 // ----------------Служебные----------------------------------
@@ -172,6 +189,7 @@ bool Login()
 				std::cout << "Пользователь: " << loginArr[i] << "\n\nДобрый ден!\n\n";
 				std::cout << "Ваш статус: " << statusArr[i] << "\n\n\n";
 				currentStatus = statusArr[i];
+				currentId = userIDArr[i];
 				return true;
 			}
 		}
