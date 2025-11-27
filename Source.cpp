@@ -79,7 +79,7 @@ int main()
 	delete[]loginArr, passArr, statusArr;
 	if (isStorageCreated)
 	{
-		delete[]idArr, nameArr, countArr, priceArr;
+		delete[]idArr, nameArr, countArr, priceArr, bonusArr, userIDArr;
 	}
 
 	return 0;
