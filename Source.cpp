@@ -1001,7 +1001,7 @@ void ChangeUsers()
 		}
 		else if (choose == "4" && userSize > 1)
 		{
-
+			DeleteUser();
 		}
 		else if (choose == "0")
 		{
@@ -1071,7 +1071,7 @@ void AddNewUser()
 
 			loginArrTemp[userSize - 1] = newLogin;
 			passinArrTemp[userSize - 1] = newPass;
-			loginArrTemp[userSize - 1] = newRole;
+			statusinArrTemp[userSize - 1] = newRole;
 			bonusArrTemp[userSize-1] = 0.0;
 			userIDArrTemp[userSize - 1] = userSize;
 
@@ -1138,13 +1138,13 @@ void DeleteUser()
 				Getline(checkPass);
 				if (checkPass == "exit")
 				{
-					std::cout << "ОТмена операции удаления";
+					std::cout << "ОТмена операции удаления\n";
 					Sleep(1500);
 					break;
 				}
 				else if (checkPass == passArr[0])
 				{
-					std::string newLogin, newPass, newRole, choose;
+					
 					if (statusArr[userId] == userStatus[2])
 					{
 						staffCount--;
@@ -1162,9 +1162,9 @@ void DeleteUser()
 						{
 							c++;
 						}
-						loginArrTemp[i] = newLogin[c];
-						passinArrTemp[i] = newPass[c];
-						loginArrTemp[i] = newRole[c];
+						loginArrTemp[i] = loginArr[c];
+						passinArrTemp[i] = passArr[c];
+						statusinArrTemp[i] = statusArr[c];
 						bonusArrTemp[i] = bonusArr[c];
 						userIDArrTemp[i] = i + 1;
 					}
