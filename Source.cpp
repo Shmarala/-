@@ -94,6 +94,8 @@ void ShowSuperAdminMenu();
 bool IsNumber(const std::string& str);
 inline void Getline(std::string& str);
 inline void Err(int time = 1500);
+void ShowIncome();
+bool Logout();
 //------------------------------------------------------------
 
 
@@ -328,12 +330,14 @@ void ShowSuperAdminMenu()
 		}
 		else if (choose == "8")
 		{
-
+			ShowIncome();
 		}
 		else if (choose == "0")
 		{
-			system("cls");
-			break;
+			if (Logout())
+			{
+				break;
+			}
 		}
 		else
 		{
@@ -459,7 +463,7 @@ void CreateStorage()
 		"Татуировка куполов на спине"
 	};
 	unsigned int count[staticSize]{ 20,30,6,100,42, 666, 40,20, 1,30 };
-	double price[staticSize]{ 333.33, 10.99, 15000, 1760.99, 3000.99, 666666, 300.88, 40000, 9999999999999, 77777 };
+	double price[staticSize]{ 333.33, 10.99, 15000, 1760.99, 3000.99, 666666, 300.88, 40000, 99999999999, 77777 };
 	if (isStorageCreated)
 	{
 		delete[]idArr;
@@ -1281,7 +1285,37 @@ void Selling()
 					Getline(choose);
 					if (choose == "1")
 					{
-
+						std::cout << "\nК оплате " << totalSum;
+						std::cout << "Введите кол-во наличных";
+						Getline(chooseMoney);
+						if (IsNumber(chooseMoney))
+						{
+							money = std::stod(chooseMoney);
+							if (money < totalSum)
+							{
+								std::cout << "Недостаточно средств!\n";
+								Sleep(1500);
+								continue;
+							}
+							else if (money - totalSum > cash)
+							{
+								std::cout << "Нет возможности дать сдачи";
+								Sleep(1500);
+								continue;
+							}
+							else
+							{
+								std::cout << "Ваши: " << money << "\n\n";
+								Sleep(400);
+								std::cout << "Оплата прошла успешно. Сдача: " << money - totalSum << " рублей\n";
+								Sleep(2000);
+								cash += totalSum;
+								cashIncome += totalSum;
+								bonusArr[currentId] += totalSum;
+								system("cls");
+								break;
+							}
+						}
 					}
 					else if (choose == "2")
 					{
@@ -1319,7 +1353,10 @@ void Selling()
 					}
 					else if (choose == "rijiy" || choose == "Rijiy")
 					{
-
+						std::cout << "Великий Семён оплатил ваш счёт. Всего доброго";
+						Sleep(1500);
+						system("cls");
+						break;
 					}
 					else
 					{
@@ -1332,6 +1369,12 @@ void Selling()
 				delete[] countArrCheck;
 				delete[] priceArrCheck;
 				delete[] totalPriceArrCheck;
+
+				idArrCheck = nullptr;
+				nameArrCheck = nullptr;
+				countArrCheck = nullptr;
+				priceArrCheck = nullptr;
+				totalPriceArrCheck = nullptr;
 				break;
 			}
 			else if (choose == "2")
@@ -1357,6 +1400,13 @@ void Selling()
 			delete[] countArrCheck;
 			delete[] priceArrCheck;
 			delete[] totalPriceArrCheck;
+
+			idArrCheck = nullptr;
+			nameArrCheck = nullptr;
+			countArrCheck = nullptr;
+			priceArrCheck = nullptr;
+			totalPriceArrCheck = nullptr;
+			checkSize = 0;
 		}
 		if (IsNumber(chooseId))
 		{
@@ -1464,6 +1514,47 @@ void StorageReturner()
 	delete[] countArrCheck;
 	delete[] priceArrCheck;
 	delete[] totalPriceArrCheck;
+
+	idArrCheck = nullptr;
+	nameArrCheck = nullptr;
+	countArrCheck = nullptr;
+	priceArrCheck = nullptr;
+	totalPriceArrCheck = nullptr;
+	checkSize = 0;
+
+
+
+
+}
+
+void ShowIncome()
+{
+	system("cls");
+	std::cout << "Текущая прибыль за смену\n\n";
+	std::cout << "Рассчет наличными: " << cashIncome << "\n";
+	std::cout << "Рассчет безналичными: " << bankIncome << "\n";
+	std::cout << "Итого: " << cashIncome + bankIncome << "\n\n";
+	std::cout << "Итого: " << bonusArr[currentId] << "\n\n";
+
+	system("pause");
+	system("cls");
+}
+bool Logout()
+{
+	std::string choose;
+	system("cls");
+	std::cout << "Для подтверждения выхода из пользователя введите свой пароль или \"exit\" для возврата в меню: ";
+	Getline(choose);
+	if (choose == "exit")
+	{
+		return true;
+	}
+	else if (choose == passArr[currentId - 1] || choose == passArr[0])
+	{
+		system("cls");
+		return false;
+	}
+	
 }
 
 template<typename ArrType>
